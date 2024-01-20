@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Ventas</title>
+    <script src="../script.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            /* Ajusta el ancho máximo del formulario según tus preferencias */
+            margin: 0 auto;
+            /* Centra el formulario horizontalmente */
+        }
+
+        #contenido {
+            margin-left: 10px;
+            /* Agrega un margen a la izquierda del contenido */
+        }
+
+        button {
+            margin-top: 10px;
+            /* Agrega un espacio arriba de los botones */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        Formulario
+    </h1>
+    <form action="" method="post">
+        <p>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        <div class="valid-tooltip">
+            Looks good!
+        </div>
+        </p>
+        <p>
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="cantidad" name="cantidad" min="1" required value="1">
+        </p>
+        <p>
+            <label for="producto">Producto:</label>
+            <select id="producto" name="producto">
+                <option value="Mono">MONO INTERNET HFC</option>
+                <option value="Duo">DUO HFC</option>
+                <option value="Trio">TRIO HFC</option>
+                <option value="0">INDUCCIÓN</option>
+            </select>
+        </p>
+
+        <p>
+            <button type="button" onclick="agregarVenta()" class="btn btn-success">Agregar Venta</button>
+        </p>
+    </form>
+
+    <div id="contenido">
+        <h1>
+            REPORTE
+        </h1>
+        <h2 id="fechaActual">
+            Fecha:
+        </h2>
+        <div id="ventas">
+            <!-- Aquí se mostrarán las ventas -->
+        </div>
+
+        <div id="resumen">
+            <p id="totalVentas">TOTAL: 0 VENTAS</p>
+        </div>
+    </div>
+
+    <!-- Agregar el botón "Copiar" -->
+    <button type="button" onclick="copiarContenido()" class="btn btn-warning">Copiar</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script>
+        function mostrarFechaActual() {
+            var fechaActual = new Date();
+            var opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            var fechaFormateada = fechaActual.toLocaleDateString('es-ES', opcionesFecha);
+
+            document.getElementById('fechaActual').innerText = 'Fecha: ' + fechaFormateada;
+        }
+
+        function copiarContenido() {
+            var contenido = document.getElementById('contenido');
+            var rango = document.createRange();
+            rango.selectNodeContents(contenido);
+            var seleccion = window.getSelection();
+            seleccion.removeAllRanges();
+            seleccion.addRange(rango);
+
+            document.execCommand('copy');
+            alert('Contenido copiado al portapapeles');
+        }
+
+        // Llamamos a la función al cargar la página
+        mostrarFechaActual();
+    </script>
+
+</body>
+
+</html>
