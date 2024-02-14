@@ -20,6 +20,8 @@ function calcularTotal() {
         resumenText = 'TOTAL: ' + totalVentas + ' VENTAS';
     } else if (totalVentas === 0 && totalMigras > 0) {
         resumenText = 'TOTAL: ' + totalMigras + ' MIGRACIONES';
+    } else if(totalVentas === 0 && totalMigras === 0) {
+        resumenText = 'TOTAL: ' + totalVentas;
     } else {
         resumenText = 'TOTAL: ' + totalVentas + ' VENTAS + ' + totalMigras + ' MIGRACIONES';
     }

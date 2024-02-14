@@ -89,7 +89,8 @@
             </p>
 
             <p style="text-align: center;">
-                <button type="button" onclick="agregarVenta()" class="btn btn-success">Agregar Venta</button>
+                <button type="button" onclick="agregarVenta(); actualizarCantidad();" class="btn btn-success">Agregar
+                    Venta</button>
             </p>
         </form>
     </div>
@@ -110,6 +111,11 @@
         <div id="resumen">
             <p id="totalVentas">TOTAL: 0 VENTAS</p>
         </div>
+        <br>
+        <div id="resumen_cantidad">
+
+        </div>
+
         <p style="text-align: center;">
             <!-- Agregar el botón "Copiar" -->
             <button type="button" onclick="copiarContenido()" class="btn btn-warning">Copiar</button>
@@ -151,6 +157,37 @@
 
         // Llamamos a la función al cargar la página
         mostrarFechaActual();
+    </script>
+    <script>
+        let cantidadPorOpcion = {};
+
+        function actualizarCantidad() {
+            const cantidadInput = parseInt(document.getElementById('cantidad').value);
+            if (cantidadInput === 0) {
+                delete cantidadPorOpcion[productoOption]; // Eliminar la entrada si la cantidad es 0
+            } else {
+                const productoIndex = document.getElementById('producto').selectedIndex;
+                const productoOption = document.getElementById('producto').options[productoIndex].text;
+
+                if (!cantidadPorOpcion[productoOption]) {
+                    cantidadPorOpcion[productoOption] = cantidadInput;
+                } else {
+                    cantidadPorOpcion[productoOption] += cantidadInput;
+                }
+            }
+            mostrarResumen();
+        }
+
+        function mostrarResumen() {
+            let resumen = '<h1>RESUMEN:</h1>';
+
+            for (const producto in cantidadPorOpcion) {
+                resumen += `<p>${producto}: ${cantidadPorOpcion[producto]}</p>`;
+            }
+
+            document.getElementById('resumen_cantidad').innerHTML = resumen;
+        }
+
     </script>
 
 </body>
