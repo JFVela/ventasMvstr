@@ -102,6 +102,7 @@
         <h2 id="fechaActual">
             Fecha:
         </h2>
+        <br>
         <div id="ventas">
             <!-- Aquí se mostrarán las ventas -->
         </div>
@@ -116,9 +117,8 @@
     </div>
 
     <div id="dedicatoria">
-        <p>Esta seccion va dedicada a mi supervisora Rossana. A mis lideres Yaneth y Marco, y a mis compañeros
-            Marilyn, Oliver, Hanns,Sra. Emilia, Fabritzio, Chris, Josue y Jessi. 
-        Oliver Pagaaaneee >:v Gaaaa</p>
+        <p>Esta pagina tiene como intencion hagilizar al momento de hacer reportes. Ademas de demostrar la facilidad que
+            nos brinda la tecnologia en el mundo actual</p>
     </div>
 
 
@@ -134,7 +134,7 @@
             var opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             var fechaFormateada = fechaActual.toLocaleDateString('es-ES', opcionesFecha);
 
-            document.getElementById('fechaActual').innerText = 'Fecha: ' + fechaFormateada;
+            document.getElementById('fechaActual').innerHTML = 'Fecha: ' + fechaFormateada;
         }
 
         function copiarContenido() {
